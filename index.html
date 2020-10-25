@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="./evue.js"></script>
+    <script src="./compile.js"></script>
+    <div id="app">
+        <!-- 插值绑定 -->
+        <p>{{name}}</p>
+        <!-- 指令解析 -->
+        <p e-text="name"></p>
+        <p>{{age}}</p>
+        <p>
+          {{doubleAge}}
+        </p>
+        <!-- 双向绑定 -->
+        <input type="text" e-model="name" />
+        <!-- 事件处理 -->
+        <button @click="changeName">哦豁</button>
+        <!-- html内容解析 -->
+        <div e-html="html"></div>
+      </div>
+      <script>
+        const ka = new EVue({
+          el: "#app",
+          data: {
+            name: "I am test.",
+            age: 12,
+            html: "<button>这是摆设按钮哦</button>"
+          },
+          created() {
+            // console.log("开始啦");
+            setTimeout(() => {
+              this.name = "测试(created)";
+            }, 1500);
+          },
+          methods: {
+            changeName() {
+              this.name = "哈喽哈喽";
+              this.age = 1;
+            }
+          }
+        });
+      </script>
+  </body>
+</html>
